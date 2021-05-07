@@ -1,0 +1,42 @@
+a.gyengénlátó {
+    font-size: 1.5em;
+    background-color: yellow;
+    color: black;
+    float: right;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+}
+
+body {
+    text-align: left;
+    font-size: 2em;
+    background-color: black;
+    color: yellow;
+    font-family: sans-serif, 'Verdana', 'Times New Roman', 'Trebuchet MS', 'Courier New';
+}
+
+.contain {
+    max-width: 800px;
+    margin: auto;
+}
+
+.code {
+    color: black;
+    border: 1px solid black;
+    background-color: antiquewhite;
+    font-weight: bold;
+}
+
+caption {
+    caption-side: top;
+}
+
+#atugrolinkek {
+    position: absolute;
+    left: -10000em;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}

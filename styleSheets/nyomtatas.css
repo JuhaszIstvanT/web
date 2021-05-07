@@ -1,0 +1,37 @@
+.contain {
+    max-width: 800px;
+    margin: auto;
+}
+
+.code {
+    border: 1px solid black;
+    background-color: antiquewhite;
+}
+
+caption {
+    caption-side: top;
+}
+
+body {
+    font-size: 1.2em;
+    text-align: left;
+    font-family: sans-serif, 'Verdana', 'Times New Roman', 'Trebuchet MS', 'Courier New';
+}
+
+#atugrolinkek {
+    position: absolute;
+    left: -10000em;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+header, button, form, textarea, a, video {
+    display: none;
+}
+
+.btn {
+    display: none;
+}

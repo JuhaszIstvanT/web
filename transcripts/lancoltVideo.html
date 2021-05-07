@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Binary Tree: Transcript</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+      <div>
+        <a href="index.html">Memóriakezelés</a>
+        <a href="dinmem.html">Dinamikus memóriakezelés</a>
+        <a href="lancolt.html">Láncolt listák</a>
+        <a href="binfa.html">Bináris fák</a>
+      </div>
+
+      <p>
+        Hi, I'm Gayle Laakmann McDowell, author of Cracking the Coding Interview. Today
+    00:03
+    we're going to talk about linked lists. A linked list is a very simple data structure.
+    00:08
+    It's essentially just a sequence of elements, where each element links to the next
+    00:12
+    element which links the next element. A linked list can contain pretty much any
+    00:16
+    type of data, strings, characters, numbers, the elements can be unsorted or sorted,
+    00:22
+    they can contain duplicate elements or all unique elements. One of the things
+    00:27
+    that distinguishes a linked list from an array which shares many of the same
+    00:30
+    properties is that in the array elements are indexed. That is, if you want to get
+    00:36
+    to the fourth element you can just, boom, instantly do that. In a linked list
+    00:41
+    though you have to start with the head and work your way through until you get
+    00:46
+    to the fourth element, That takes linear time so it's quite a bit slower. So why
+    00:51
+    would anyone use such a data structure? Well the advantage of a linked list is
+    00:56
+    that insertions and deletions can be very quick. If you just want to insert an
+    01:01
+    element right to the beginning of the linked list, that can be done in constant
+    01:05
+    time. If you want to delete an element from the beginning of the linked list again
+    01:10
+    constant time. So that's very very fast.
+    01:14
+    Of course if you want to append an element to the end of the linked list
+    01:17
+    that might require walking all the way through the linked list until you get
+    01:22
+    the very last element and then inserting the element there. That will take linear
+    01:27
+    time so it all depends really on what you're looking for.
+    01:30
+    Now there's one other thing we should talk about before we dive into the code,
+    01:34
+    and that is this alternate version called a doubly linked list. A doubly
+    01:39
+    linked list is just like a singly linked list but in addition to each element
+    01:43
+    having a link to the next element, each element also links the previous element.
+    01:48
+    For certain operations that can be quite handy. Now that we've covered the basics
+    01:54
+    of a linked list let's take a look at what the code would look like. Implementing
+    01:58
+    a linked list is reasonably straightforward.
+    02:00
+    We just need a class node that takes in, has a next value, and a data, and then
+    02:08
+    just to make our lives easier we'll add in a constructor.
+    02:11
+    And set that value. Ok. So the first method we'll want to implement is an
+    02:18
+    append method. So let's go ahead and get started with that. Append is going to
+    02:22
+    take in a data value and then it's going to have some pointer that starts off
+    02:30
+    at the current node so the head of the linked list and then it's going
+    02:34
+    to walk through the linked list until we get to the end of the linked list.
+    02:38
+    Well how do we know that we're not at the end of the linked list?
+    02:42
+    Well we're not at the end of the linked list as long as there's something after
+    02:45
+    it.
+    02:46
+    So in other words while current dot next does not equal null, keep moving, get to the
+    02:52
+    end of the linked list. Then when we get down to the end of the linked list,
+    02:55
+    create this new node. If we prepend an element we're going to actually change
+    03:02
+    what the head node is. Now this makes a little bit of an issue because we could
+    03:08
+    have multiple places our code base that all link to the same head. But if we
+    03:12
+    change the head in one place
+    03:15
+    how does everybody else know that our head value changed? So the workaround for
+    03:20
+    this is rather than giving everybody an access to the head pointer directly, we
+    03:26
+    define a class linked list that's basically going to wrap our head. And
+    03:33
+    then the append method can go where it probably should have from the
+    03:37
+    beginning, which is in this linked list class. Let's just update this because the
+    03:41
+    current node should actually point to the head. And what's nice here is that we
+    03:46
+    can also add in the case if the head is null, so we can say if the head is null then
+    03:53
+    actually we just want to create the head. So if head is null, head equals new node data
+    04:00
+    and then
+    04:04
+    we can just return because now we're done with that.
+    04:07
+    Alright. Prepending is relatively easy now. We just need to, so its going to avoid
+    04:15
+    again, prepend taken data. Now the way this method will work is that we're
+    04:22
+    going to create actually a new head value. So node new head equals new node
+    04:29
+    data. Then new head's next value is going to link over to the old head and then we
+    04:37
+    need to change the head pointer. For our final operation let's implement a method
+    04:43
+    delete that deletes the first node that has a particular value. So first we'll just
+    04:49
+    declare our method. Void delete with value that takes in a data.
+    04:57
+    Ok now if head is null, we know we just want to return immediately.
+    05:04
+    There's nothing we can do there. Now what delete with value is going to do is its
+    05:08
+    going to walk through the linked list and it's going to stop one
+    05:12
+    before the element we want to delete. And then its going to say, uh oh, the very next
+    05:17
+    element you want to delete? So I'm going to actually just update my pointers to
+    05:21
+    work around it so my next pointer is going to be that deleted values next
+    05:26
+    pointer. So let's see how this works.
+    05:29
+    So first we'll have this little current method that walks through the linked list.
+    05:34
+    And then we're going to walk through as long as we're not at the last element so
+    05:40
+    we don't want to run off the edge of the linked list.
+    05:42
+    Ok now if current dot next dot data equals the data were trying to lead.
+    05:50
+    So in other words if the next value is the one you want to delete, then cut out that
+    05:55
+    next value. So then current dot next equals current dot next dot next. And then we
+    06:02
+    return.
+    06:03
+    So what this is doing is saying, okay, if the next value you want to delete, don't go
+    06:08
+    to the element, and just walk around it. Set my next pointer to be my next
+    06:12
+    pointer's next pointer so walk around it. And then
+    06:16
+    in other cases we just move on to the next element. Now there's one case we
+    06:21
+    want to be very careful of here which is what happens if the node we want to delete is
+    06:25
+    actually the head node? This will actually cause a problem in our current
+    06:29
+    scenario because we need to actually update the head value. So we can just
+    06:35
+    special case that. If head dot data is the data we want to delete then head equals
+    06:43
+    head dot next. That is just cut me out of the linked list. Now let's take a look at
+    06:49
+    what our method does. So first it takes in this data and then says okay if head is
+    06:54
+    null, return,
+    06:56
+    there's nothing we can do. If we need to delete the head then just go and delete
+    07:00
+    it. Set head equal to head dot next, set equal to the next value. Otherwise walk through
+    07:05
+    the linked list starting at the head value, then, as long as, walk up until
+    07:10
+    the next value is the one we want to delete, in which case we say, okay, set current dot next, my
+    07:18
+    next pointer, over to the next next value. And then we return.
+    07:21
+    Otherwise we continue walking through the linked list. So those are the basic
+    07:27
+    operations for deleting, inserting both appending and prepending into a linked
+    07:32
+    list. Now that you've seen the basic operations why don't you give it a shot on a
+    07:36
+    new linked list problem.
+    </p>
+
+    </body>
+</html> 
